@@ -2,6 +2,8 @@ import pandas as pd
 from openpyxl import Workbook
 from io import StringIO
 
+CSV_betandsnaam = 'pias export.csv'
+
 def opschonen_regel(regel):
     """Verwijder accolades van de regel en strip spaties."""
     return regel.replace('{', '').replace('}', '').strip()
@@ -34,7 +36,7 @@ def opslaan_in_excel(csv_bestandsnaam, excel_bestandsnaam="CoordinatenSpanten.xl
 
 
 def main():
-    opslaan_in_excel('pias export.csv')
+    opslaan_in_excel(CSV_betandsnaam)
 
 if __name__ == "__main__":
     main()
