@@ -3,6 +3,8 @@ from openpyxl import Workbook
 from io import StringIO
 
 CSV_betandsnaam = 'pias export.csv'
+omrekenFactor = 1000  # mm naar m
+
 
 def opschonen_regel(regel):
     """Verwijder accolades van de regel en strip spaties."""
@@ -17,6 +19,8 @@ def opslaan_in_excel(csv_bestandsnaam, excel_bestandsnaam="CoordinatenSpanten.xl
     df = pd.read_csv(schone_data, header=None, names=['SpantNummer', 'X', 'Y'])
     # ".0" van SpantNummer verwijderen en omzetten naar int
     df['SpantNummer'] = df['SpantNummer'].apply(lambda x: int(float(x)))
+    df['X'] = df['X'] / omrekenFactor  # Converteer X van mm naar m
+    df['Y'] = df['Y'] / omrekenFactor  # Converteer Y van mm naar m
     
     # Een nieuw Excel-bestand aanmaken en default sheet verwijderen
     wb = Workbook()
