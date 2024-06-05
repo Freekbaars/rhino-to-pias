@@ -2,7 +2,7 @@ import pandas as pd
 from openpyxl import Workbook
 from io import StringIO
 
-CSV_betandsnaam = 'pias export.csv'
+CSV_betandsnaam = 'pias export.csv' # CSV bestand met coordinaten
 omrekenFactor = 1000  # mm naar m
 
 
@@ -33,6 +33,7 @@ def opslaan_in_excel(csv_bestandsnaam, excel_bestandsnaam="CoordinatenSpanten.xl
         ws.append(['X', 'Y'])
         for _, row in df[df['SpantNummer'] == spant].iterrows():
             ws.append([row['X'], row['Y']])
+        print(f"spand {spant}")
     
     # Opslaan van het Excel-bestand
     wb.save(excel_bestandsnaam)
